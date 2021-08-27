@@ -10,6 +10,7 @@ import {
 } from 'data/pickaxes';
 import useDB from 'db/useDB';
 import { MinerWeapons } from 'utils/weapons';
+import { WeaponSkins } from '../data/weaponskins';
 
 type TabProgress = {
   progress: number;
@@ -21,8 +22,13 @@ export default function useCurrentTabProgress(
 ): TabProgress {
   const db = useDB();
 
-  const totalItems = useMemo(() => {
+  const totalItems: number = useMemo(() => {
     switch (currentTab) {
+      case 'weaponSkins':
+        return (
+          WeaponSkins.length *
+            Object.values(MinerWeapons).reduce((p, c) => p + c.length, 0)
+        );
       case 'frameworks':
         return (
           Frameworks.length *
@@ -39,11 +45,18 @@ export default function useCurrentTabProgress(
           PickaxeUniquePartNames.length
         );
     }
-  }, [currentTab]);
+  }, [currentTab]) as number;
 
   const p = useLiveQuery(
     async () => {
       switch (currentTab) {
+        case 'weaponSkins': {
+          const acquiredWeaponSkins: number = await db.weaponSkins.count();
+          return {
+            progress: (acquiredWeaponSkins / totalItems) * 100,
+            partialProgress: null,
+          };
+          }
         case 'frameworks': {
           const acquiredFrameworks = await db.frameworks.count();
           return {
@@ -81,7 +94,7 @@ export default function useCurrentTabProgress(
       progress: 0,
       partialProgress: null,
     }
-  );
+  ) as {progress: number; partialProgress: number};
 
   useEffect(() => {
     gtag('event', `progress`, {

@@ -7,7 +7,7 @@ import PageHeader from 'components/PageHeader';
 
 const { Content } = Layout;
 
-export type TabName = 'overclocks' | 'frameworks' | 'pickaxes';
+export type TabName = 'overclocks' | 'frameworks' | 'pickaxes' | 'weaponSkins';
 
 export const DEFAULT_TAB: TabName = 'overclocks';
 
@@ -44,6 +44,11 @@ export const TABS: Array<{
     key: 'pickaxes',
     content: lazy(() => import('pages/pickaxes/PickaxesPage')),
   },
+  {
+    title: 'Weapon Skins',
+    key: 'weaponSkins',
+    content: lazy(() => import('pages/weaponSkins/WeaponSkinsPage')),
+  }
 ];
 
 const PageSpinner = memo(function PageSpinner() {

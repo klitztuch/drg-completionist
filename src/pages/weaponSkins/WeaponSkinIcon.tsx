@@ -1,6 +1,7 @@
 import {  WeaponSkins} from '../../data/weaponskins';
 
-export default function WeaponSkinIcon(props: {
+export default function WeaponSkinIcon(
+  props: {
   weaponskin: typeof WeaponSkins[number];
 }){
   return  (

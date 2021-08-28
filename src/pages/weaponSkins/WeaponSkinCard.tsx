@@ -6,6 +6,7 @@ import useSuspendedLiveQuery from '../../db/useSuspendedLiveQuery';
 import { Miner, MinerColor } from '../../utils/miner';
 import { MinerWeapon } from '../../utils/weapons';
 import WeaponSkinIcon from './WeaponSkinIcon';
+import './WeaponSkinCard.css'
 
 export default function WeaponSkinCard(props: {
   miner: Miner;

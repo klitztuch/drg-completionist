@@ -1,0 +1,12 @@
+.ant-ribbon.weaponskin-ribbon {
+    background-color: rgba(254, 169, 22, 0.9);
+}
+
+.weaponskin-ribbon .ant-ribbon-corner {
+    color: rgba(254, 169, 22, 0.7);
+}
+
+.weaponskin-ribbon .ant-ribbon-text {
+    color: rgba(42, 42, 42, 1);
+    font-weight: bold;
+}
